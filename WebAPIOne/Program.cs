@@ -27,6 +27,8 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuer = true,
         ValidateAudience = true,
+       // ValidateIssuerSigningKey=true,
+       // ClockSkew=TimeSpan.Zero,
         ValidAudience = configuration["JWT:ValidAudience"],
         ValidIssuer = configuration["JWT:ValidIssuer"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
@@ -38,7 +40,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("RequireMultipleRoles", policyBuilder =>
     {
         policyBuilder.RequireRole("Viewer");
-        policyBuilder.RequireClaim(ClaimTypes.Email, "swati.dalal@kelltontech.com");
+        policyBuilder.RequireClaim(ClaimTypes.Email, "yogesh.tak@kelltontech.com");
     });
 
     options.AddPolicy("AgeOver18",
